@@ -733,13 +733,13 @@ class TCPROSTransport(Transport):
                 # exit.  30. is a bit high, but I'm concerned about
                 # embedded platforms.  To do this properly, we'd have
                 # to move to non-blocking routines.
-                self.connect(self.dest_address[0], self.dest_address[1], self.endpoint_id, timeout=30.)
+                self.connect(self.dest_address[0], self.dest_address[1], self.endpoint_id, timeout=15.)
             except TransportInitError:
                 self.socket = None
                 
             if self.socket is None:
                 # exponential backoff
-                interval = interval * 2
+                interval = 2
                 
             time.sleep(interval)
 
